@@ -1,0 +1,6 @@
+development:
+  # змініть логін/пароль на свої (або задайте змінну оточення DATABASE_URL)
+  SQLALCHEMY_DATABASE_URI: "mysql+pymysql://root:password@localhost:3306/spotify_db"
+  SQLALCHEMY_TRACK_MODIFICATIONS: false
+  JSON_SORT_KEYS: false
+  DEBUG: true
