@@ -1,0 +1,3369 @@
+{
+  "info": {
+    "name": "Lab4+5 Spotify Back-End",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "record_labels",
+      "item": [
+        {
+          "name": "GET all record_labels",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/labels",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "labels"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST create (record_labels)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/labels",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "labels"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Postman Label\",\n  \"country\": \"Ukraine\",\n  \"established_year\": 2024\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"labelId\", pm.response.json().label_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET one (record_labels)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/labels/{{labelId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "labels",
+                "{{labelId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT update (record_labels)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/labels/{{labelId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "labels",
+                "{{labelId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"country\": \"Poland\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 labels -> albums (one)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/labels/1/albums",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "labels",
+                "1",
+                "albums"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 labels -> albums (all)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/labels/albums",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "labels",
+                "albums"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE (record_labels)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/labels/{{labelId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "labels",
+                "{{labelId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "genres",
+      "item": [
+        {
+          "name": "GET all genres",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/genres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "genres"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST create (genres)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/genres",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "genres"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Postman Genre\",\n  \"description\": \"test\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"genreId\", pm.response.json().genre_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET one (genres)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/genres/{{genreId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "genres",
+                "{{genreId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT update (genres)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/genres/{{genreId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "genres",
+                "{{genreId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"updated\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 genres -> tracks (one)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/genres/3/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "genres",
+                "3",
+                "tracks"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 genres -> tracks (all)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/genres/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "genres",
+                "tracks"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE (genres)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/genres/{{genreId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "genres",
+                "{{genreId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "artists",
+      "item": [
+        {
+          "name": "GET all artists",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/artists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "artists"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST create (artists)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/artists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "artists"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Postman Artist\",\n  \"country\": \"Ukraine\",\n  \"bio\": \"test\",\n  \"monthly_listeners\": 1000\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"artistId\", pm.response.json().artist_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET one (artists)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/artists/{{artistId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "artists",
+                "{{artistId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT update (artists)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/artists/{{artistId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "artists",
+                "{{artistId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"monthly_listeners\": 2000\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:N artists -> tracks (one)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/artists/1/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "artists",
+                "1",
+                "tracks"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:N artists -> tracks (all)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/artists/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "artists",
+                "tracks"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE (artists)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/artists/{{artistId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "artists",
+                "{{artistId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "albums",
+      "item": [
+        {
+          "name": "GET all albums",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/albums",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "albums"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST create (albums)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/albums",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "albums"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Postman Album\",\n  \"release_date\": \"2024-01-01\",\n  \"album_type\": \"EP\",\n  \"label_id\": 1\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"albumId\", pm.response.json().album_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET one (albums)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/albums/{{albumId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "albums",
+                "{{albumId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT update (albums)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/albums/{{albumId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "albums",
+                "{{albumId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Renamed Album\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 albums -> tracks (one)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/albums/1/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "albums",
+                "1",
+                "tracks"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 albums -> tracks (all)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/albums/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "albums",
+                "tracks"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE (albums)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/albums/{{albumId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "albums",
+                "{{albumId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tracks",
+      "item": [
+        {
+          "name": "GET all tracks",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST create (tracks)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Postman Track\",\n  \"duration_seconds\": 180,\n  \"isrc_code\": \"POSTMAN00001\",\n  \"album_id\": 1,\n  \"genre_id\": 3,\n  \"play_count\": 0\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"trackId\", pm.response.json().track_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET one (tracks)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks/{{trackId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks",
+                "{{trackId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT update (tracks)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks/{{trackId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks",
+                "{{trackId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"play_count\": 10\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:N tracks -> artists (one)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks/{{trackId}}/artists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks",
+                "{{trackId}}",
+                "artists"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:N link: add artist to track",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks/{{trackId}}/artists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks",
+                "{{trackId}}",
+                "artists"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"artist_id\": 5,\n  \"role\": \"Featured\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:N tracks -> artists (all)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks/artists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks",
+                "artists"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:N link: remove artist from track",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks/{{trackId}}/artists/5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks",
+                "{{trackId}}",
+                "artists",
+                "5"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE (tracks)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks/{{trackId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks",
+                "{{trackId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "GET all users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST create (users)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"postman_user\",\n  \"email\": \"postman@example.com\",\n  \"subscription_plan\": \"Free\",\n  \"country\": \"Ukraine\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"userId\", pm.response.json().user_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET one (users)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "{{userId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT update (users)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "{{userId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subscription_plan\": \"Premium\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 users -> playlists (one)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/1/playlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1",
+                "playlists"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 users -> devices (one)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/1/devices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1",
+                "devices"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 users -> playlists (all)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/playlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "playlists"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 users -> devices (all)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/devices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "devices"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE (users)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "{{userId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "playlists",
+      "item": [
+        {
+          "name": "GET all playlists",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playlists"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST create (playlists)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playlists"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Postman Playlist\",\n  \"description\": \"test\",\n  \"is_public\": true,\n  \"user_id\": 1\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"playlistId\", pm.response.json().playlist_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET one (playlists)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playlists/{{playlistId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playlists",
+                "{{playlistId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT update (playlists)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playlists/{{playlistId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playlists",
+                "{{playlistId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Renamed Playlist\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:N link: add track to playlist",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playlists/{{playlistId}}/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playlists",
+                "{{playlistId}}",
+                "tracks"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"track_id\": 2\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:N playlists -> tracks (one)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playlists/{{playlistId}}/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playlists",
+                "{{playlistId}}",
+                "tracks"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:N playlists -> tracks (all)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playlists/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playlists",
+                "tracks"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:N link: remove track from playlist",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playlists/{{playlistId}}/tracks/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playlists",
+                "{{playlistId}}",
+                "tracks",
+                "2"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE (playlists)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playlists/{{playlistId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playlists",
+                "{{playlistId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "devices",
+      "item": [
+        {
+          "name": "GET all devices",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/devices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "devices"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST create (devices)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/devices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "devices"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"device_name\": \"Postman Phone\",\n  \"device_type\": \"Smartphone\",\n  \"is_active\": false\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"deviceId\", pm.response.json().device_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET one (devices)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/devices/{{deviceId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "devices",
+                "{{deviceId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT update (devices)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/devices/{{deviceId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "devices",
+                "{{deviceId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_active\": true\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE (devices)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/devices/{{deviceId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "devices",
+                "{{deviceId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "current_playback",
+      "item": [
+        {
+          "name": "POST helper: create user without playback",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"pb_user\",\n  \"email\": \"pb_user@example.com\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"pbUserId\", pm.response.json().user_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET all current_playback",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playback",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playback"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST create (current_playback)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playback",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playback"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": {{pbUserId}},\n  \"track_id\": 1,\n  \"device_id\": null,\n  \"progress_seconds\": 0,\n  \"is_playing\": true\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"playbackId\", pm.response.json().playback_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET one (current_playback)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playback/{{playbackId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playback",
+                "{{playbackId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT update (current_playback)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playback/{{playbackId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playback",
+                "{{playbackId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"progress_seconds\": 60,\n  \"is_playing\": false\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE (current_playback)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playback/{{playbackId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playback",
+                "{{playbackId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE helper user",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{pbUserId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "{{pbUserId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "reviews (1:M, тригери замість FK)",
+      "item": [
+        {
+          "name": "POST helper: create track",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Review Target\",\n  \"duration_seconds\": 215,\n  \"isrc_code\": \"REVTARGET001\",\n  \"album_id\": 1,\n  \"genre_id\": 3\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"rvTrackId\", pm.response.json().track_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST create review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"track_id\": {{rvTrackId}}, \"reviewer\": \"postman\", \"rating\": 5, \"comment\": \"ok\"}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"reviewId\", pm.response.json().review_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET all reviews",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET one review",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/{{reviewId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "{{reviewId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT update review",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/{{reviewId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "{{reviewId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 4\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 track -> reviews (one)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks/{{rvTrackId}}/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks",
+                "{{rvTrackId}}",
+                "reviews"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "M:1 tracks -> reviews (all)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks",
+                "reviews"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "TRIGGER: review for nonexistent track -> 409",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"track_id\": 999999,\n  \"reviewer\": \"x\",\n  \"rating\": 3\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 409\", function () { pm.response.to.have.status(409); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "TRIGGER: delete track that has reviews -> 409",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks/{{rvTrackId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks",
+                "{{rvTrackId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 409\", function () { pm.response.to.have.status(409); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE review",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/{{reviewId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reviews",
+                "{{reviewId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE helper track",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks/{{rvTrackId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks",
+                "{{rvTrackId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "triggers (3.a, 3.f, 3.k)",
+      "item": [
+        {
+          "name": "3.k username/email first letters differ -> 409",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"zed\",\n  \"email\": \"alpha@example.com\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 409\", function () { pm.response.to.have.status(409); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "3.a duration_seconds ends with 00 -> 409",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tracks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tracks"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"T\",\n  \"duration_seconds\": 300,\n  \"isrc_code\": \"TRG0000001\",\n  \"album_id\": 1\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 409\", function () { pm.response.to.have.status(409); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "3.f create playlist",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playlists"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"To be deleted\",\n  \"user_id\": 1\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });",
+                  "pm.collectionVariables.set(\"logPlId\", pm.response.json().playlist_id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "3.f delete playlist (trigger writes log)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playlists/{{logPlId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playlists",
+                "{{logPlId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "3.f GET delete log",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/logs/playlists-deleted",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "logs",
+                "playlists-deleted"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "stored_procedures (2.a-2.e)",
+      "item": [
+        {
+          "name": "2.a CALL sp_insert_artist",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/artists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "artists"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Procedure Band\",\n  \"country\": \"Ukraine\",\n  \"bio\": \"via CALL\",\n  \"monthly_listeners\": 777\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.a validation -> 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/artists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "artists"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 400\", function () { pm.response.to.have.status(400); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.b CALL sp_add_track_artist (by names)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/track-artists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "track-artists"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"track_title\": \"Numb\",\n  \"artist_name\": \"Dua Lipa\",\n  \"role\": \"Featured\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.b unknown artist -> 400",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/track-artists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "track-artists"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"track_title\": \"Numb\",\n  \"artist_name\": \"Nobody\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 400\", function () { pm.response.to.have.status(400); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.c CALL sp_insert_noname_batch (10 rows)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/noname-batch",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "noname-batch"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.d function MAX via procedure",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/duration-stat?stat=MAX",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "duration-stat"
+              ],
+              "query": [
+                {
+                  "key": "stat",
+                  "value": "MAX"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.d function MIN via procedure",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/duration-stat?stat=MIN",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "duration-stat"
+              ],
+              "query": [
+                {
+                  "key": "stat",
+                  "value": "MIN"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.d function SUM via procedure",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/duration-stat?stat=SUM",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "duration-stat"
+              ],
+              "query": [
+                {
+                  "key": "stat",
+                  "value": "SUM"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.d function AVG via procedure",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/duration-stat?stat=AVG",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "duration-stat"
+              ],
+              "query": [
+                {
+                  "key": "stat",
+                  "value": "AVG"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.d wrong stat -> 400",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/duration-stat?stat=XYZ",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "duration-stat"
+              ],
+              "query": [
+                {
+                  "key": "stat",
+                  "value": "XYZ"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 400\", function () { pm.response.to.have.status(400); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.e CALL sp_split_artists_random (cursor)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/split-artists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "split-artists"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2.e second run creates new tables",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/procedures/split-artists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "procedures",
+                "split-artists"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"status is 2xx\", function () { pm.expect(pm.response.code).to.be.within(200, 299); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
